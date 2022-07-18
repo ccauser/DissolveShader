@@ -802,14 +802,6 @@
                                     <action selector="updateRevelage:" target="XfG-lQ-9wD" id="gVs-7D-Ar0"/>
                                 </connections>
                             </slider>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhA-zZ-MYQ">
-                                <rect key="frame" x="155" y="14" width="96" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="1" tickMarkPosition="above" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="5D2-0j-kav"/>
-                                <connections>
-                                    <action selector="updateScale:" target="XfG-lQ-9wD" id="pRu-iY-f97"/>
-                                </connections>
-                            </slider>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bce-cT-ne2">
                                 <rect key="frame" x="13" y="13" width="44" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -821,18 +813,9 @@
                                     <action selector="hPressed:" target="XfG-lQ-9wD" id="mFe-Td-qCM"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="boU-YR-0FF">
-                                <rect key="frame" x="185" y="6" width="36" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="scale" id="cXY-h0-dfL">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ud2-OR-HnU">
                                 <rect key="frame" x="589" y="13" width="84" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="push" title="Animate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="e9T-w8-0QA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -850,12 +833,41 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhA-zZ-MYQ">
+                                <rect key="frame" x="156" y="14" width="96" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="1" tickMarkPosition="above" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="5D2-0j-kav"/>
+                                <connections>
+                                    <action selector="updateScale:" target="XfG-lQ-9wD" id="pRu-iY-f97"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="boU-YR-0FF">
+                                <rect key="frame" x="186" y="6" width="36" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="scale" id="cXY-h0-dfL">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82U-WN-zI2">
+                                <rect key="frame" x="271" y="21" width="91" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title="keep earth" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uyB-Pq-7n9">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="updateGeometryTexture:" target="XfG-lQ-9wD" id="9ih-6f-9th"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </customView>
                     <connections>
                         <outlet property="burnStage" destination="KFq-2E-Cep" id="hdw-6c-wLl"/>
                         <outlet property="dissolveStage" destination="KFq-2E-Cep" id="ot8-Vf-WCw"/>
                         <outlet property="gameView" destination="HdV-gg-2Sm" id="Qty-XO-Ago"/>
+                        <outlet property="keepGeometryTexture" destination="82U-WN-zI2" id="axb-UB-tYI"/>
                         <outlet property="scale" destination="5D2-0j-kav" id="ajR-iS-JS1"/>
                         <outlet property="view" destination="0Tv-7f-xid" id="bNi-VP-FFP"/>
                     </connections>

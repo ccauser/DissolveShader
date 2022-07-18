@@ -12,6 +12,7 @@ class GameViewController: NSViewController {
     @IBOutlet weak var gameView: SCNView!
     @IBOutlet weak var dissolveStage: NSSlider!
     @IBOutlet weak var scale: NSSliderCell!
+    @IBOutlet weak var keepGeometryTexture: NSButton!
     
     // return the sphere node
     lazy var sphere: SCNNode = {
@@ -24,10 +25,16 @@ class GameViewController: NSViewController {
         return sphere
     }()
     
+    lazy var earthImage: NSImage = {
+        return bundleImage("earth")
+    }()
+    
+    var lastShaderTexture: NSImage!
+    
    // return the first material shared by sphere and box, or create one for both if none available
     lazy var firstMaterial: SCNMaterial = {
         let material = SCNMaterial()
-        material.diffuse.contents = NSColor.red
+        material.diffuse.contents = earthImage
         guard let _ = sphere.geometry else { fatalError("Can't find sphere geometry")}
         sphere.geometry!.firstMaterial = material
         guard let _ = sphere.geometry else { fatalError("Can't find box geometry")}
@@ -96,14 +103,16 @@ class GameViewController: NSViewController {
         firstMaterial.diffuse.wrapT = SCNWrapMode.repeat
         scale.intValue = 1 // Update UI
 
-        firstMaterial.setValue(SCNMaterialProperty(contents: noiseImage), forKey: "noiseTexture") // Shader propery: texture
-        firstMaterial.diffuse.contents = noiseImage
+        updateMaterial( noiseImage)
     }
 
     // Need to update the texture property used by shader and diffuse texture to help visualize
     func updateMaterial( _ noiseImage: NSImage) {
-        firstMaterial.diffuse.contents = noiseImage
+        lastShaderTexture = noiseImage
         firstMaterial.setValue(SCNMaterialProperty(contents: noiseImage), forKey: "noiseTexture")
+        if keepGeometryTexture.state == .off {
+            firstMaterial.diffuse.contents = noiseImage
+        }
     }
 
     func bundleImage( _ image: String) -> NSImage {
@@ -122,6 +131,14 @@ class GameViewController: NSViewController {
     
     @IBAction func nPressed(_ sender: Any) {
         updateMaterial( bundleImage("noise"))
+    }
+    
+    @IBAction func updateGeometryTexture(_ sender: NSButton) {
+        if sender.state == .off { // turning off, same texture as shader
+            firstMaterial.diffuse.contents = lastShaderTexture
+        } else {
+            firstMaterial.diffuse.contents = earthImage
+        }
     }
     
     @IBAction func updateScale(_ sender: NSSlider) {
