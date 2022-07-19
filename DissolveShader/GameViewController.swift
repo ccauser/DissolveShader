@@ -138,14 +138,18 @@ class GameViewController: NSViewController {
             firstMaterial.diffuse.contents = lastShaderTexture
         } else {
             firstMaterial.diffuse.contents = earthImage
+            firstMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(1, 1, 1);
         }
     }
     
     @IBAction func updateScale(_ sender: NSSlider) {
         firstMaterial.setValue( sender.intValue, forKey:"noiseScale") // Shader propery: Fully visible at first
-        firstMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(CGFloat( sender.floatValue), CGFloat( sender.floatValue), 1);
-        firstMaterial.diffuse.wrapS = SCNWrapMode.repeat
-        firstMaterial.diffuse.wrapT = SCNWrapMode.repeat    }
+        if keepGeometryTexture.state == .off { // turning off, same texture as shader including scale
+            firstMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(CGFloat( sender.floatValue), CGFloat( sender.floatValue), 1);
+        } else { // if original texture then force the scale to 1
+            firstMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(1, 1, 1);
+        }
+    }
     
     @IBAction func updateRevelage(_ sender: NSSlider) {
         firstMaterial.setValue( sender.floatValue, forKey:"dissolveStage") // Shader propery: Fully visible at first
