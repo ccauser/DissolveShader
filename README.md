@@ -12,4 +12,4 @@ Best rendering is (N)oise,  Scale of 1, keep earth, and play with the disolve sl
 You can left-click and drag to freely rotate the scene, alt + left-click to pan, shift + left-click to zoom
 
 ## Check it out!
-![](images/UI1.png)
+![](images/UI1.gif)
